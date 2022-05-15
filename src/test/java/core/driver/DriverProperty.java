@@ -18,10 +18,15 @@ public class DriverProperty {
      private DesiredCapabilities capabilities;
      private String arguments;
 
+    /**
+     * Get information of browser from Property file. 
+     * @param filePath
+     * @param browser
+     * @throws ParseException
+     */
      public DriverProperty(String filePath, String browser) throws ParseException {
          Properties configFile = PropertiesHelper.readPropertiesFile(filePath);
          capabilities = new DesiredCapabilities();
-
          this.mode = configFile.getProperty(browser + ".mode");
          this.platform = configFile.getProperty(browser + ".platform");
          this.driver = configFile.getProperty(browser + ".driver");

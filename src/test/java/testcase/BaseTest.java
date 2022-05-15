@@ -2,6 +2,7 @@ package testcase;
 
 import contantproject.ConstantProject;
 import core.driver.DriverManager;
+import core.logger.Log;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.json.simple.parser.ParseException;
@@ -17,7 +18,7 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"browser"})
     public void setUpMethod(@Optional("ChromeLocal") String browser) throws ParseException {
-        Logger logger = Logger.getLogger("Start test");
+        Log.info("Start Test");
         PropertyConfigurator.configure("./src/test/java/core/logger/Log4j.properties");
         DriverManager.initBrowser(browser);
         DriverManager.getWebDriver().manage().window().maximize();
@@ -28,6 +29,7 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown(){
+        Log.info("End test");
         DriverManager.getWebDriver().quit();
         DriverManager.removeDriver();
     }

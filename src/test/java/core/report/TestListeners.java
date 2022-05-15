@@ -1,10 +1,9 @@
 package core.report;
-
-import core.driver.DriverManager;
 import com.aventstack.extentreports.*;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import core.driver.DriverManager;
 import core.utilities.DateTimeHelper;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -20,7 +19,7 @@ import java.util.Arrays;
 
 public class TestListeners implements ITestListener {
 
-    private static ExtentReports reporter = ReporterManager.createInstance();
+    private static ExtentReports reporter = ExtentManager.createExtentReports();
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 
     @Override
@@ -100,9 +99,9 @@ public class TestListeners implements ITestListener {
     }
 
     public static String getScreenshotName(String methodName){
-        String fileName =  methodName + "_" +
-                DateTimeHelper.getCurrentTime()+
-                DateTimeHelper.getCurrentDate() + ".png";
+        String fileName =  methodName + "_"
+                + DateTimeHelper.getCurrentTime() + "_"
+                + DateTimeHelper.getCurrentDate() + ".png";
         return fileName;
     }
 
